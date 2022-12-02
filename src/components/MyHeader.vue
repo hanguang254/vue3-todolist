@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="ftx">
         <!-- //键盘事件 -->
         <input type="text" placeholder="请输入事件，回车键确认" @keyup.enter="add">
     </div>
@@ -26,6 +26,11 @@ import {nanoid} from "nanoid"
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="css" scoped>
+/* .ftx input{
+    text-align: center;
+} */
+input{
+    width: 395px;
+}
 </style>

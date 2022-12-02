@@ -6,7 +6,7 @@
             <span>{{msg.title}}</span>
         </label>
         <button class="btn btn-danger" @click="handledelete(msg.id)">删除</button>
-        <button class="btn btn-danger">编辑</button>
+        <button class="btn btn-edit">编辑</button>
     </li>
 </template>
 
@@ -36,7 +36,6 @@ li{
 }
 li button{
     display: none;
-    background-color: brown;
     float: right;
 }
 /* hover鼠标悬浮 */

@@ -86,5 +86,14 @@ export default {
 
 <style>
 #app {
+    margin: 0px 500px 0px 500px;
+  
+}
+.btn-danger{
+  background-color: red;
+}
+.btn-edit{
+    background-color:cornflowerblue;
+    margin-right: 5px;
 }
 </style>
