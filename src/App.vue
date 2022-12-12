@@ -39,6 +39,12 @@ export default {
         if(todos.id === id) todos.done = !todos.done
       })
     },
+    //更新数据
+    updatatodo(id,title){
+      this.todos.forEach((todos)=>{
+        if(todos.id === id) todos.title = title
+      })
+    },
     //删除一个数据
     deletetodo(id){
       //filter数组过滤方法
@@ -74,11 +80,13 @@ export default {
   mounted(){
     this.$bus.$on('checktodo',this.checktodo)
     this.$bus.$on('deletetodo',this.deletetodo)
+    this.$bus.$on('updatatodo',this.updatatodo)
   },
   //解绑
   beforeDestroy(){
     this.$bus.$off('checktodo')
     this.$bus.$off('deletetodo')
+    this.$bus.$off('updatatodo')
   }
     
 }
@@ -86,9 +94,9 @@ export default {
 
 <style>
 #app {
-    margin: 0px 500px 0px 500px;
-  
+    padding-right: 1000px;
 }
+
 .btn-danger{
   background-color: red;
 }

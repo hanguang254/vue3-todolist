@@ -31,6 +31,6 @@ import {nanoid} from "nanoid"
     text-align: center;
 } */
 input{
-    width: 395px;
+    
 }
 </style>
