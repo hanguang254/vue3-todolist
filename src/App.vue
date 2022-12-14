@@ -1,107 +1,20 @@
 <template>
-  <div id="app">
-    <!-- 绑定事件-->
-    <MyHeader @receive="receive"></MyHeader>
-    <MyList :todos="todos"></MyList>
-    <MyFooterVue :todos="todos" @checkedAlltodo="checkedAlltodo" @clearAllTodo="clearAllTodo"></MyFooterVue>
+  <div>
+    <Search/>
+    <pagList></pagList>
   </div>
-  
 </template>
 
 <script>
-import MyHeader from "./components/MyHeader.vue"
-import MyList from "./components/MyList.vue"
-import MyFooterVue from "./components/MyFooter.vue"
+import Search from './components/Search.vue';
+import pagList from './components/pagList.vue';
 
 export default {
-  name: 'app',
-  data(){
-        return{
-          //读取本地存储
-            todos:JSON.parse(localStorage.getItem("todos")) || []
-        }
-        
-    },
+  name: 'App',
   components: {
-    MyHeader,
-    MyList,
-    MyFooterVue,
-  },
-  methods: {
-    receive(x){
-       //接受Myheader的数据
-       //存入data种
-       this.todos.unshift(x)
-    },
-    //勾选or取消勾选 done值修改
-    checktodo(id){
-      this.todos.forEach((todos)=>{
-        if(todos.id === id) todos.done = !todos.done
-      })
-    },
-    //更新数据
-    updatatodo(id,title){
-      this.todos.forEach((todos)=>{
-        if(todos.id === id) todos.title = title
-      })
-    },
-    //删除一个数据
-    deletetodo(id){
-      //filter数组过滤方法
-      this.todos = this.todos.filter( todo => todo.id !== id)
-    },
-    //全选 与取消全选
-    checkedAlltodo(done){
-      this.todos.forEach((todo)=>{
-        todo.done = done
-      })
-    },
-    clearAllTodo(){
-      this.todos = this.todos.filter((todo)=>{
-        return !todo.done
-      })
-    }
-  },
-  watch:{
-    todos:{
-      //深度监视
-      deep:true,
-      // 执行任务
-      handler(value){
-        // 存储本地
-        localStorage.setItem("todos",JSON.stringify(value))
-      }
-    }
-    
-    
-    
-  },
-  //全局事件
-  mounted(){
-    this.$bus.$on('checktodo',this.checktodo)
-    this.$bus.$on('deletetodo',this.deletetodo)
-    this.$bus.$on('updatatodo',this.updatatodo)
-  },
-  //解绑
-  beforeDestroy(){
-    this.$bus.$off('checktodo')
-    this.$bus.$off('deletetodo')
-    this.$bus.$off('updatatodo')
+    Search,
+    pagList,
   }
-    
 }
 </script>
 
-<style>
-#app {
-    padding-right: 1000px;
-}
-
-.btn-danger{
-  background-color: red;
-}
-.btn-edit{
-    background-color:cornflowerblue;
-    margin-right: 5px;
-}
-</style>

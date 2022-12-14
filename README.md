@@ -1,4 +1,4 @@
-# vue-globalevent
+# vue-githubtodolist
 
 ## Project setup
 ```
