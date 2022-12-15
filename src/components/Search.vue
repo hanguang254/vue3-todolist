@@ -20,13 +20,17 @@ import axios from 'axios';
         },
         methods: {
             searchUsers() {
+                
+                this.$bus.$emit('getusers', {isFirst: false, isLoading: true,errMsg: '',users: []});
+
                 axios.get(`https://api.github.com/search/users?q=${this.keyword}`).then(
                     response => {
                         // console.log(response.data.items);
-                        this.$bus.$emit('getusers', response.data.items);
+                        this.$bus.$emit('getusers', {isLoading: false,errMsg: '',users: response.data.items});
                     },
                     error => {
-                        console.log("请求失败！",error.message);
+                        // console.log("请求失败！",error.message);
+                        this.$bus.$emit('getusers', {isLoading: false,errMsg:error.message ,users: []});
                     }
                 )
             }
