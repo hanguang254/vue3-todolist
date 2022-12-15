@@ -20,7 +20,7 @@
         },
         mounted() {
             this.$bus.$on('getusers', (data) => {
-                console.log("我收到数据",data);
+                // console.log("我收到数据",data);
                 this.users = data;
             })
         },
